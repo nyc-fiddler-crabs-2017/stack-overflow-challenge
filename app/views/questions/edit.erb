@@ -1,0 +1,16 @@
+<h1>Question</h1>
+ <form action='/questions/<%= @question.id %>' method='post'>
+    <input type="hidden" name="_method" value="put">
+   <label>Question: <input type='text' name="entry[body]"></label><br>
+   <input type='submit' value='Edit Question'>
+</form>
+
+<form action='/questions/<%= @question.id %>' method='post'>
+    <input type="hidden" name="_method" value="delete">
+   <label>Delete</label><br>
+   <input type='submit' value='Delete Question'>
+</form>
+
+
+
+
