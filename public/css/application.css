@@ -1,0 +1,44 @@
+html {
+  height: 100%;
+  background-color: #1A1B41;
+}
+
+body {
+  height: 100%;
+}
+
+.class1 {
+  background-color: #BAFF29;
+  padding-top: .5em;
+  line-height: 3em;
+  margin-top: 2em;
+
+  text-align: center;
+  list-style-type: none;
+}
+
+.class2 {
+  background-color: #6290C3;
+  color: #F1FFE7;
+  padding-bottom: .5em;
+  padding-top: .5em;
+  text-align: center;
+}
+
+.class3 {
+  background-color: #C2E7DA;
+  padding-bottom: 2em;
+  padding-top: 2em;
+  text-align: center;
+}
+
+.class4 {
+  background-color: #F1FFE7;
+  padding-bottom: 2em;
+  padding-top: 2em;
+  color: #1A1B41;
+  display: block;
+}
+.class5 {
+  background-color: #BAFF29;
+}
