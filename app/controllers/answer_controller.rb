@@ -7,6 +7,6 @@ get '/questions/:id/answers/new' do
   erb :'/answers/new'
 end
 
-post '/answers' do
+post '/questions/:id/answers' do
   "This is the /answers post route"
 end
