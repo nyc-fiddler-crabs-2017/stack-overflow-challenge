@@ -9,7 +9,7 @@ end
 
 post '/questions' do
   require_user
-  @question = Question.new(body: params[:body], user_id: current_user.id)
+  @question = Question.new(title: params[:question][:title], body: params[:question][:body], user_id: current_user.id)
   if @question.save
     redirect "/questions/#{@question.id}"
   else
@@ -32,7 +32,7 @@ end
 
 put '/questions/:id' do
   @question = Question.find(params[:id])
-  @question.assign_attributes(params[:entry])
+  @question.assign_attributes(params[:entry]) #NEEDS FIXED
 
   if @question.save
     redirect "questions/#{@question.id}"

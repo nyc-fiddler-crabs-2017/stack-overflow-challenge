@@ -1,6 +1,4 @@
 this is the questions erb file<br>
 <%@questions.each do |question|%>
-<a href="/questions/<%=question.id%>/edit"><%= question.body %></a><br>
+<a href="/questions/<%=question.id%>/edit"><%= question.title %></a><br>
 <%end%>
-
-
