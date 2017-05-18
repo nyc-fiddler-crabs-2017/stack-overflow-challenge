@@ -1,0 +1,10 @@
+<%= @question.body %><br>
+<%= "by " @question.user.username %>
+
+<% if @errors %>
+  <span>Something went wrong:</span>
+    <% @errors.each do |error| %>
+      <li class="error-item"><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
