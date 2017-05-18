@@ -1,0 +1,9 @@
+<% if @errors %>
+  <span>Something went wrong:</span>
+  <ul class="error-list pad-b-2">
+    <% @errors.each do |e| %>
+    <% puts e %>
+      <li class="error-item"><%= e %></li>
+    <% end %>
+  </ul>
+<% end %>
