@@ -8,5 +8,12 @@ get '/questions/:id/answers/new' do
 end
 
 post '/questions/:id/answers' do
-  "This is the /answers post route"
+  @question = Question.find_by(id: params[:id])
+  @answer = Answer.new(body: params[:body], question_id: params[:id], user_id: @question.user.id)
+
+  if @answer.save
+    redirect "/questions/#{@question.id}"
+  else
+    @errors = @answer.errors.full_messages
+  end
 end
