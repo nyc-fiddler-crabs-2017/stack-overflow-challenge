@@ -8,7 +8,7 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  # session[:user_id] = user.id
+  require_user
   @question = Question.new(body: params[:body], user_id: current_user.id)
   if @question.save
     redirect "/questions/#{@question.id}"
@@ -19,7 +19,7 @@ post '/questions' do
 end
 
 get '/questions/:id' do
-  @question = find_and_ensure_entry(params[:id])
+  @question = Question.find(params[:id])
   erb :'questions/show'
 end
 
