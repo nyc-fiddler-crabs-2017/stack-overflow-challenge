@@ -25,17 +25,13 @@ end
 
 
 get '/questions/:id/edit' do
-
-  #get params from url
-  @question = Question.find(params[:id]) #define intstance variable for view
-
-  erb :'questions/edit' #show edit question view
-
+  @question = Question.find(params[:id])
+  erb :'questions/edit'
 end
 
 
 put '/questions/:id' do
-  @question = find_and_ensure_entry(params[:id])
+  @question = Question.find(params[:id])
   @question.assign_attributes(params[:entry])
 
   if @question.save
