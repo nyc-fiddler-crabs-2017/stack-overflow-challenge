@@ -8,7 +8,7 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  # session[:user_id] = user.id
+  require_user
   @question = Question.new(body: params[:body], user_id: current_user.id)
   if @question.save
     redirect "/questions/#{@question.id}"
@@ -19,23 +19,19 @@ post '/questions' do
 end
 
 get '/questions/:id' do
-  @question = find_and_ensure_entry(params[:id])
+  @question = Question.find(params[:id])
   erb :'questions/show'
 end
 
 
 get '/questions/:id/edit' do
-
-  #get params from url
-  @question = Question.find(params[:id]) #define intstance variable for view
-
-  erb :'questions/edit' #show edit question view
-
+  @question = Question.find(params[:id])
+  erb :'questions/edit'
 end
 
 
 put '/questions/:id' do
-  @question = find_and_ensure_entry(params[:id])
+  @question = Question.find(params[:id])
   @question.assign_attributes(params[:entry])
 
   if @question.save
@@ -47,7 +43,7 @@ put '/questions/:id' do
 end
 
 delete '/questions/:id' do
-  @question = find_and_ensure_entry(params[:id])
+  @question = Question.find(params[:id])
   @question.destroy
   redirect '/questions'
 end

@@ -1,5 +1,5 @@
-<%= @question.body %><br>
-<%= "by " @question.user.username %>
+<h2><%= @question.body %></h2><br>
+<p>Created by: <%= @question.user.username %></p>
 
 <% if @errors %>
   <span>Something went wrong:</span>
