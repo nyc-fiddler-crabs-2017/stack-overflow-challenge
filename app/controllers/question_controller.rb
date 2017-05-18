@@ -43,7 +43,7 @@ put '/questions/:id' do
 end
 
 delete '/questions/:id' do
-  @question = find_and_ensure_entry(params[:id])
+  @question = Question.find(params[:id])
   @question.destroy
   redirect '/questions'
 end
