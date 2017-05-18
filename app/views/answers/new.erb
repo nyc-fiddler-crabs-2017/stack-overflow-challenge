@@ -1,7 +1,7 @@
 <h2><%=@question.title%></h2>
 <h2><%=@question.body%></h2>
 
-<form action="/answers" method="post">
+<form action="/questions/<%=@question.id%>/answers" method="post">
   <input type="text" name="answer[body]" placeholder="Type your answer here...">
   <input type="submit" value="Submit Answer">
 </form>
