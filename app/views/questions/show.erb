@@ -2,18 +2,18 @@
 
 <div id="question-info">
   <h2><%= @question.title %></h2>
-  <p><%= @question.body %></p>
-  <p>Asked by <%= @question.user.username %> <%=@question.time_ago_in_words(@question.created_at)%></p>
+  <p><%= @question.body %> (Asked by <a href="/users/<%=@question.user.id%>"><%=@question.user.username%></a> <%=@question.time_ago_in_words(@question.created_at)%> ago.)</p>
 </div>
 
-<div id="edit-section">
-  <a id="edit-question" href="/questions/<%=@question.id%>/edit">Edit Question</a>
-</div>
-
-<p>Created by: <%= @question.user.username %></p>
+<% if logged_in? %>
+  <% if require_owner(@question.user.id) %>
+    <div id="edit-section">
+      <a id="edit-question" href="/questions/<%=@question.id%>/edit">Edit Question</a>
+    </div>
+  <% end %>
+<% end %>
 
 <%= erb :'_errors' %>
-
 
 <h2>Answers</h2>
 <div class="new-answer-section">
@@ -29,17 +29,18 @@
   <% end %>
 </div>
 
-
-
-
 <h2>Comments</h2>
+
 <div id="comment-section">
-  <a id="new-comment" href="/questions/<%=@question.id%>/comments/new">Comment</a>
+  <% if logged_in? %>
+    <a id="new-comment" href="/questions/<%=@question.id%>/comments/new">Comment</a>
+  <% end %>
 </div>
 <% if @question.comments.count > 0 %>
   <ul>
       <% @question.comments.each do |c| %>
-        <p><%= c.body %> (<%=c.time_ago_in_words(c.created_at)%> by <a href="/users/<%=c.user.id%>"><%=c.user.username%>)</a><p>
+        <p><%= c.body %> (Commented on <%=c.time_ago_in_words(c.created_at)%> ago by <a href="/users/<%=c.user.id%>"><%=c.user.username%></a>.)<p>
     <% end %>
   </ul>
 <% end %>
+</section>

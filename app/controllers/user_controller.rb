@@ -29,13 +29,9 @@ post '/users' do
 end
 
 get '/users/:id' do
-  require_user
+
   @user = User.find_by(id: params[:id])
-  if require_owner(@user.id)
-    erb :'users/show'
-  else
-    redirect '/'
-  end
+  erb :'users/show'
 end
 
 get '/logout' do
