@@ -4,6 +4,7 @@ get '/questions' do
 end
 
 get '/questions/new' do
+  require_user
   erb :'questions/new'
 end
 
@@ -25,7 +26,7 @@ end
 
 
 get '/questions/:id/edit' do
-
+  require_user
   @question = Question.find(params[:id])
   if request.xhr?
     erb :'questions/_edit_delete', layout: false, locals: { question: @question }
@@ -36,6 +37,7 @@ end
 
 
 put '/questions/:id' do
+  require_user
   @question = Question.find(params[:id])
   @question.assign_attributes(params[:question])
   if @question.save
@@ -47,6 +49,7 @@ put '/questions/:id' do
 end
 
 delete '/questions/:id' do
+  require_user
   @question = Question.find(params[:id])
   @question.destroy
   redirect '/questions'
