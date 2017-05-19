@@ -1,12 +1,14 @@
 <h2><%= @question.title %></h2><br>
 <p>Created by: <%= @question.user.username %></p>
 
-<% if @errors %>
-  <span>Something went wrong:</span>
-    <% @errors.each do |error| %>
-      <li class="error-item"><%= error %></li>
-    <% end %>
-  </ul>
+<h3>comments</h3>
+
+<% if @question.comments %>
+  <% @question.comments.each do |c| %>
+    <%= c.body %>
+  <% end %>
 <% end %>
+
+<%= erb :'_errors' %>
 
 <a href="/questions/<%=@question.id%>/edit">Edit</a>
