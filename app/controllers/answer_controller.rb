@@ -3,14 +3,13 @@ get '/answers' do
 end
 
 get '/questions/:question_id/answers/new' do
-  @question = Question.find_by(id: params[:id])
+  @question = Question.find(params[:question_id])
   erb :'/answers/new'
 end
 
 post '/questions/:question_id/answers' do
-  @question = Question.find_by(id: params[:question_id])
-  @answer = Answer.new(body: params[:body], question_id: params[:question_id], user_id: @question.user.id)
-
+  @question = Question.find(params[:question_id])
+  @answer = @question.answers.new(params[:answer])
   if @answer.save
     redirect "/questions/#{@question.id}"
   else
@@ -18,6 +17,12 @@ post '/questions/:question_id/answers' do
   end
 
 end
+
+
+
+
+
+
 
 get '/questions/:question_id/answers/:answer_id/edit' do
   @question = Question.find_by(id: params[:question_id])
