@@ -14,18 +14,20 @@
 
 <%= erb :'_errors' %>
 
+
 <h2>Answers</h2>
 <div class="new-answer-section">
   <a id="new-answer-link" href="/questions/<%= @question.id %>/answers/new">Answer</a>
 </div>
-<% if @question.answers.count > 0 %>
-  <ul>
-    <% @question.answers.each do |a| %>
-      <p><%= a.body %> (Answered <%=a.time_ago_in_words(a.created_at)%> by <a href="/users/<%=a.user.id%>"><%=a.user.username%>)</a></p>
-    <% end %>
-  </ul>
-<% end %>
-
+<div class="answer-list">
+  <% if @question.answers.count > 0 %>
+    <ul class="ul-answers">
+      <% @question.answers.each do |a| %>
+        <%= erb :'/answers/_show', locals: {partial_a: a} %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
 
 
 
