@@ -23,7 +23,6 @@ $(document).ready(function() {
       method: 'get',
       url: $link
     }).done(function(response){
-        debugger
       $($editQuestionTag).hide()
       $("#question-info").html(response)
     })
