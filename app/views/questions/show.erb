@@ -1,14 +1,26 @@
-<h2><%= @question.title %></h2><br>
+<h1><%= @question.title %></h1>
 <p>Created by: <%= @question.user.username %></p>
-
-<h3>comments</h3>
-
-<% if @question.comments %>
-  <% @question.comments.each do |c| %>
-    <%= c.body %>
-  <% end %>
-<% end %>
+<p><%= @question.body %></p>
+<a href="/questions/<%=@question.id%>/edit">edit question</a>
 
 <%= erb :'_errors' %>
 
-<a href="/questions/<%=@question.id%>/edit">Edit</a>
+<h3>answers</h3>
+<a href="/questions/<%= @question.id %>/answers/new">submit new answer</a>
+<% if @question.answers.count > 0 %>
+  <ul>
+    <% @question.answers.each do |a| %>
+      <p><%= a.body %></p>
+    <% end %>
+  </ul>
+<% end %>
+
+<h3>comments</h3>
+<a href="/questions/<%= @question.id %>/comments/new">submit new answer</a>
+<% if @question.comments.count > 0 %>
+  <ul>
+      <% @question.comments.each do |c| %>
+        <p><%= c.body %><p>
+      <% end %>
+  </ul>
+<% end %>
