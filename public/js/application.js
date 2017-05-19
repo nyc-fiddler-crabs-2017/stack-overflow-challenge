@@ -2,7 +2,6 @@ $(document).ready(function() {
   $("#new-comment").on("click", function(event){
     event.preventDefault();
     var $commentLink = $(this)
-
     var $link = $(this).attr('href');
 
     $.ajax({
@@ -17,7 +16,7 @@ $(document).ready(function() {
 
   $("#edit-button").on("click", function(event){
     event.preventDefault();
-    var $questionLink = $(this)
+    var $editLink = $(this)
     var $link = $(this).attr('href')
 
     $.ajax({
@@ -25,8 +24,8 @@ $(document).ready(function() {
       url: $link
     }).done(function(response){
         debugger
-      $($questionLink).hide()
-      $($questionLink).closest("edit-section").html(response)
+      $($editLink).hide()
+      $($editLink).closest("edit-section").html(response)
     })
   })
 
