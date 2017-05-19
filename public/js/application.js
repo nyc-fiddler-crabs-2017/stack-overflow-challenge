@@ -25,7 +25,7 @@ $(document).ready(function() {
     }).done(function(response){
         debugger
       $($editQuestionTag).hide()
-      $($editQuestionTag).parent().append(response)
+      $("#question-info").html(response)
     })
   })
 
