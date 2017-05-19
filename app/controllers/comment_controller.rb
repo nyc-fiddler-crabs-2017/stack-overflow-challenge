@@ -6,7 +6,11 @@ end
 
 get '/questions/:question_id/comments/new' do
   @question = Question.find(params[:question_id])
-  erb :'comments/new'
+  if request.xhr?
+    erb :'comments/_new', layout: false
+  else
+    erb :'comments/new'
+  end
 end
 
 post '/questions/:question_id/comments' do
