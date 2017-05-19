@@ -1,5 +1,5 @@
 <h1><%= @question.title %></h1>
-<p>Created by: <%= @question.user.username %></p>
+<p>Asked by <%= @question.user.username %> <%=@question.time_ago_in_words(@question.created_at)%></p>
 <p><%= @question.body %></p>
 <a href="/questions/<%=@question.id%>/edit">edit question</a>
 
@@ -10,7 +10,7 @@
 <% if @question.answers.count > 0 %>
   <ul>
     <% @question.answers.each do |a| %>
-      <p><%= a.body %></p>
+      <p><%= a.body %> (Answered <%=a.time_ago_in_words(a.created_at)%> by <a href="/users/<%=a.user.id%>"><%=a.user.username%>)</a></p>
     <% end %>
   </ul>
 <% end %>
@@ -33,8 +33,7 @@
 <% if @question.comments.count > 0 %>
   <ul>
       <% @question.comments.each do |c| %>
-        <p><%= c.body %><p>
+        <p><%= c.body %> (<%=c.time_ago_in_words(c.created_at)%> by <a href="/users/<%=c.user.id%>"><%=c.user.username%>)</a><p>
       <% end %>
   </ul>
 <% end %>
-
