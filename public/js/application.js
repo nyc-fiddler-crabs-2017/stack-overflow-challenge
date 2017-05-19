@@ -25,7 +25,7 @@ $(document).ready(function() {
     }).done(function(response){
         debugger
       $($editQuestionTag).hide()
-      $($editQuestionTag).closest("edit-section").html(response)
+      $($editQuestionTag).parent().append(response)
     })
   })
 
