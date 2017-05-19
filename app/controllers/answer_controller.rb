@@ -14,6 +14,7 @@ post '/questions/:question_id/answers' do
     redirect "/questions/#{@question.id}"
   else
     @errors = @answer.errors.full_messages
+    erb :'/answers/new'
   end
 
 end
