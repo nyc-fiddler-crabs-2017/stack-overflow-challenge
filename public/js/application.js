@@ -14,9 +14,9 @@ $(document).ready(function() {
     })
   })
 
-  $("#edit-button").on("click", function(event){
+  $("#edit-question").on("click", function(event){
     event.preventDefault();
-    var $editLink = $(this)
+    var $editQuestionTag = $(this)
     var $link = $(this).attr('href')
 
     $.ajax({
@@ -24,8 +24,8 @@ $(document).ready(function() {
       url: $link
     }).done(function(response){
         debugger
-      $($editLink).hide()
-      $($editLink).closest("edit-section").html(response)
+      $($editQuestionTag).hide()
+      $($editQuestionTag).closest("edit-section").html(response)
     })
   })
 
