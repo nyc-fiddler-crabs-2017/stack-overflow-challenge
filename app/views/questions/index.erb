@@ -1,4 +1,4 @@
 this is the questions erb file<br>
 <%@questions.each do |question|%>
-<a href="/questions/<%=question.id%>"><%= question.title %></a><br>
+  <a href="/questions/<%=question.id%>"><%= question.title %> </a>(Asked <%=question.time_ago_in_words(question.created_at)%>) <br>
 <%end%>
