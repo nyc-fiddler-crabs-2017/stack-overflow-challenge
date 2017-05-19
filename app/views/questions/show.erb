@@ -15,6 +15,19 @@
   </ul>
 <% end %>
 
+
+<%= erb :'_errors' %>
+
+
+<div id="edit-section">
+  <a id="edit-button" href="/questions/<%=@question.id%>/edit">Edit</a>
+</div>
+
+<div id="comment-section">
+  <a id="new-comment" href="/questions/<%=@question.id%>/comments/new">Comment</a>
+</div>
+
+
 <h3>comments</h3>
 <a href="/questions/<%= @question.id %>/comments/new">submit new answer</a>
 <% if @question.comments.count > 0 %>
@@ -24,3 +37,4 @@
       <% end %>
   </ul>
 <% end %>
+
