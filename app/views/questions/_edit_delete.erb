@@ -1,13 +1,15 @@
-<h1>Question</h1>
- <form action='/questions/<%= @question.id %>' method='post'>
-    <input type="hidden" name="_method" value="put">
-    <label>Question: <input type='text' name="question[title]"></label><br>
-    <label>Details: <input type='text' name="question[body]"></label><br></label><br>
-   <input type='submit' value='Edit Question'>
-</form>
-
-<form action='/questions/<%= @question.id %>' method='post'>
+<div>
+   <form action='/questions/<%= @question.id %>' method='post'>
+      <input type="hidden" name="_method" value="put">
+      <label>Question: <input type='text' name="question[title]" value="<%=@question.title%>"></label><br>
+      <label>Details: <input type='text' name="question[body]" value="<%=@question.body%>%>"></label><br></label><br>
+      <input type="hidden" name="question[user_id]" value="<%=current_user.id%>">
+     <input type='submit' value='Edit'>
+  </form>
+</div>
+<div>
+  <form action='/questions/<%= @question.id %>' method='post'>
     <input type="hidden" name="_method" value="delete">
-   <label>Delete</label><br>
-   <input type='submit' value='Delete Question'>
-</form>
+    <input type='submit' value='Delete'>
+  </form>
+</div>

@@ -1,16 +1,4 @@
-<h1>New Question</h1>
-<div>
-   <form action='/questions/<%= @question.id %>' method='post'>
-      <input type="hidden" name="_method" value="put">
-      <label>Question: <input type='text' name="question[title]" value="<%=@question.title%>"></label><br>
-      <label>Details: <input type='text' name="question[body]" value="<%=@question.body%>%>"></label><br></label><br>
-      <input type="hidden" name="question[user_id]" value="<%=current_user.id%>">
-     <input type='submit' value='Edit'>
-  </form>
-</div>
-<div>
-  <form action='/questions/<%= @question.id %>' method='post'>
-    <input type="hidden" name="_method" value="delete">
-    <input type='submit' value='Delete'>
-  </form>
-</div>
+<h1>Edit Question</h1>
+
+<%= erb :'/questions/_edit_delete' %>
+
