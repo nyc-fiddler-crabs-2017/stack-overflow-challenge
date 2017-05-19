@@ -15,8 +15,8 @@
 <%= erb :'_errors' %>
 
 <h2>Answers</h2>
-<div>
-  <a href="/questions/<%= @question.id %>/answers/new">Answer</a>
+<div class="new-answer-section">
+  <a id="new-answer-link" href="/questions/<%= @question.id %>/answers/new">Answer</a>
 </div>
 <% if @question.answers.count > 0 %>
   <ul>
