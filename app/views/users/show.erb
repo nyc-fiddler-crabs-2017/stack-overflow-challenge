@@ -6,8 +6,8 @@
     <% @user.questions.each do |q| %>
     <li>
       <a href="/questions/<%= q.id %>"><%= q.body %></a>
-      <span>written on <%=q.created_at%>.</span>
-      <%= erb :'questions/_edit_delete' %>
+      <span>(Asked <%=q.time_ago_in_words(q.created_at)%>)</span>
+      <%= erb :'questions/_edit_delete', locals: { question: q }%>
     </li>
     <% end %>
   <% end %>
@@ -18,9 +18,9 @@
     <ul>
       <%if @user.answers %>
       <%@user.answers.each do |answer|%>
-        <li><a href="/questions/<%=answer.question.id%>"><%= answer.question.title %></a></li>
+        <li><a href="/questions/<%=answer.question.id%>"><%= answer.question.title %></a>(Asked <%=answer.question.time_ago_in_words(answer.question.created_at)%> by <a href="/users/<%=answer.question.user.id%>"><%=answer.question.user.username%>)</a></li>
           <ul>
-            <li><%= answer.body %></li>
+            <li><%= answer.body %> (Answered <%=answer.time_ago_in_words(answer.created_at)%>)</li>
           </ul>
        <%end%>
       <%end%>
