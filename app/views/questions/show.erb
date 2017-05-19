@@ -1,8 +1,9 @@
 <h1><%= @question.title %></h1>
 <p>Created by: <%= @question.user.username %></p>
 <p><%= @question.body %></p>
+
 <div id="edit-section">
-  <a id="edit-button" href="/questions/<%=@question.id%>/edit">Edit Question</a>
+  <a id="edit-question" href="/questions/<%=@question.id%>/edit">Edit Question</a>
 </div>
 
 <%= erb :'_errors' %>
