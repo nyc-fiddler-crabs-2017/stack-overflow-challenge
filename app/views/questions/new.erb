@@ -1,6 +1,7 @@
 <h1>Question</h1>
- <form action='/questions' method='post'>
-   <label>Question: <input type='text' name="question[title]"></label><br>
-   <label>Details: <input type='text' name="question[body]"></label><br>
-   <input type='submit' value='Submit Question'>
-</form>
+
+<%= erb :'_errors' %>
+
+<h3>Submit New Question</h3>
+
+<%= erb :'/questions/_new' %>

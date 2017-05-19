@@ -1,11 +1,11 @@
-<h1>QUESTIONS</h1>
 <div class="class5">
+  <h1>QUESTIONS</h1>
   <%= erb :'/questions/index' %>
 </div>
 
 <% if logged_in? %>
-  <form action='/questions' method='post'>
-    <label>Input New Question: <input type='text' name="body"></label><br>
-    <input type='submit' value='SUBMIT'>
-  </form>
+<div class="class5">
+  <h2>Ask A New Question</h2>
+    <%= erb :'/questions/_new' %>
+  </div>
 <% end %>

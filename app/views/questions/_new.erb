@@ -1,0 +1,6 @@
+<form action='/questions' method='post'>
+  <label>Question: <input type='text' name="question[title]"></label><br>
+  <label>Details: <input type='text' name="question[body]"></label><br>
+  <input type="hidden" name="question[user_id]" value="<%=current_user.id%>">
+  <input type='submit' value='Submit'>
+</form>

@@ -1,12 +1,19 @@
 <h1><%= @question.title %></h1>
 <p>Asked by <%= @question.user.username %> <%=@question.time_ago_in_words(@question.created_at)%></p>
+
 <p><%= @question.body %></p>
-<a href="/questions/<%=@question.id%>/edit">edit question</a>
+
+<div id="edit-section">
+  <a id="edit-question" href="/questions/<%=@question.id%>/edit">Edit Question</a>
+</div>
+<p>Created by: <%= @question.user.username %></p>
 
 <%= erb :'_errors' %>
 
-<h3>answers</h3>
-<a href="/questions/<%= @question.id %>/answers/new">submit new answer</a>
+<h2>Answers</h2>
+<div>
+  <a href="/questions/<%= @question.id %>/answers/new">Answer</a>
+</div>
 <% if @question.answers.count > 0 %>
   <ul>
     <% @question.answers.each do |a| %>
@@ -16,24 +23,17 @@
 <% end %>
 
 
-<%= erb :'_errors' %>
 
 
-<div id="edit-section">
-  <a id="edit-button" href="/questions/<%=@question.id%>/edit">Edit</a>
-</div>
 
+<h2>Comments</h2>
 <div id="comment-section">
   <a id="new-comment" href="/questions/<%=@question.id%>/comments/new">Comment</a>
 </div>
-
-
-<h3>comments</h3>
-<a href="/questions/<%= @question.id %>/comments/new">submit new answer</a>
 <% if @question.comments.count > 0 %>
   <ul>
       <% @question.comments.each do |c| %>
         <p><%= c.body %> (<%=c.time_ago_in_words(c.created_at)%> by <a href="/users/<%=c.user.id%>"><%=c.user.username%>)</a><p>
-      <% end %>
+    <% end %>
   </ul>
 <% end %>
