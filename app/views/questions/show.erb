@@ -1,12 +1,16 @@
 <h1><%= @question.title %></h1>
 <p>Created by: <%= @question.user.username %></p>
 <p><%= @question.body %></p>
-<a href="/questions/<%=@question.id%>/edit">edit question</a>
+<div id="edit-section">
+  <a id="edit-button" href="/questions/<%=@question.id%>/edit">Edit Question</a>
+</div>
 
 <%= erb :'_errors' %>
 
 <h2>Answers</h2>
-<a href="/questions/<%= @question.id %>/answers/new">Submit New Answer</a>
+<div>
+  <a href="/questions/<%= @question.id %>/answers/new">Answer</a>
+</div>
 <% if @question.answers.count > 0 %>
   <ul>
     <% @question.answers.each do |a| %>
@@ -15,16 +19,14 @@
   </ul>
 <% end %>
 
-<div id="edit-section">
-  <a id="edit-button" href="/questions/<%=@question.id%>/edit">Edit</a>
-</div>
 
+
+
+
+<h2>Comments</h2>
 <div id="comment-section">
   <a id="new-comment" href="/questions/<%=@question.id%>/comments/new">Comment</a>
 </div>
-
-<h2>Comments</h2>
-<a href="/questions/<%= @question.id %>/comments/new">Submit New Comment</a>
 <% if @question.comments.count > 0 %>
   <ul>
       <% @question.comments.each do |c| %>
