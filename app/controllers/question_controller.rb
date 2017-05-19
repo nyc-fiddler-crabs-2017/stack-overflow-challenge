@@ -32,8 +32,7 @@ end
 
 put '/questions/:id' do
   @question = Question.find(params[:id])
-  @question.assign_attributes(params[:entry]) #NEEDS FIXED
-
+  @question.assign_attributes(params[:question])
   if @question.save
     redirect "questions/#{@question.id}"
   else
