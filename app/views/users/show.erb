@@ -1,13 +1,28 @@
-<h1>Hello, <%= @user.username %>. Here are all of your questions.</h1>
+<h1>Hello, <%= @user.username %>. Here are all of your questions and answers.</h1>
 
+<h2>Asked Questions</h2>
 <ul>
   <% if @user.questions %>
     <% @user.questions.each do |q| %>
     <li>
-      <a href="/questions/<%= q.id %>"<%= q.body %></a>
-      <span><%= "written on #{created_at}."%></span>
-      <%= erb :'entries/_edit_delete' %>
+      <a href="/questions/<%= q.id %>"><%= q.body %></a>
+      <span>written on <%=q.created_at%>.</span>
+      <%= erb :'questions/_edit_delete' %>
     </li>
     <% end %>
   <% end %>
 </ul>
+
+<div>
+  <h2>Contributed Answers</h2>
+    <ul>
+      <%if @user.answers %>
+      <%@user.answers.each do |answer|%>
+        <li><a href="/questions/<%=answer.question.id%>"><%= answer.question.title %></a></li>
+          <ul>
+            <li><%= answer.body %></li>
+          </ul>
+       <%end%>
+      <%end%>
+    </ul>
+</div>
