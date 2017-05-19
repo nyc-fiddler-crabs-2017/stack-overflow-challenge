@@ -28,5 +28,18 @@ $(document).ready(function() {
     })
   })
 
+  $(".new-answer-section").on("click", "#new-answer-link", function() {
+    event.preventDefault();
+    var $link = $(this);
+    var $url = $(this).attr("href");
 
+    $.ajax({
+      method: 'get',
+      url: $url,
+    }).done(function(res) {
+      console.log(res);
+      $($link).hide();
+      $($link).closest(".new-answer-section").append(res);
+    })
+  })
 });
