@@ -5,17 +5,27 @@ end
 
 get '/questions/new' do
   require_user
-  erb :'questions/new'
+  if request.xhr?
+    erb :'questions/_new', layout: false
+  else
+    erb :'questions/new'
+  end
 end
 
 post '/questions' do
+
   require_user
   @question = Question.new(title: params[:question][:title], body: params[:question][:body], user_id: current_user.id)
-  if @question.save
-    redirect "/questions/#{@question.id}"
+  if request.xhr? && @question.save
+    puts "hello"*100
+    erb :'questions/_question',  locals: { question: @question}, :layout => false
   else
-    @errors = @question.error.full_messages
-    erb :'questions/new'
+    if @question.save
+      redirect "/questions/#{@question.id}"
+    else
+      @errors = @question.error.full_messages
+      erb :'questions/new'
+    end
   end
 end
 

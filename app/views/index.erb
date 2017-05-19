@@ -1,11 +1,11 @@
 <div class="class5">
   <h1>QUESTIONS</h1>
   <%= erb :'/questions/index' %>
+  <% if logged_in? %>
+    <a id="show_question_form" href="/questions/new">New Question</a>
+  <% end %>
+
 </div>
 
-<% if logged_in? %>
-<div class="class5">
-  <h2>Ask A New Question</h2>
-    <%= erb :'/questions/_new' %>
-  </div>
-<% end %>
+
+
