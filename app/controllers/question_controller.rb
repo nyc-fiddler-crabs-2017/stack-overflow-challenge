@@ -31,7 +31,7 @@ get '/questions/:id/edit' do
   if request.xhr?
     erb :'questions/_edit_delete', layout: false, locals: { question: @question }
   else
-    erb :'questions/edit'
+    erb :'/questions/edit', locals: { question: @question }
   end
 end
 
