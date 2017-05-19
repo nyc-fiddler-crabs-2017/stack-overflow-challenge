@@ -2,7 +2,7 @@
 
 <div id="question-info">
   <h2><%= @question.title %></h2>
-  <p><%= @question.body %></p>
+  <p>Asked by <%= @question.user.username %> <%=@question.time_ago_in_words(@question.created_at)%></p>
 </div>
 
 <div id="edit-section">
@@ -19,7 +19,7 @@
 <% if @question.answers.count > 0 %>
   <ul>
     <% @question.answers.each do |a| %>
-    <span><li><%= a.body %> <a href="/questions/<%=@question.id%>/answers/<%=a.id%>/edit">edit</a></span></li>
+      <p><%= a.body %> (Answered <%=a.time_ago_in_words(a.created_at)%> by <a href="/users/<%=a.user.id%>"><%=a.user.username%>)</a></p>
     <% end %>
   </ul>
 <% end %>
@@ -35,7 +35,7 @@
 <% if @question.comments.count > 0 %>
   <ul>
       <% @question.comments.each do |c| %>
-      <span><li><%= c.body %> <a href="/questions/<%=@question.id%>/comments/<%=c.id%>/edit">edit</a></span></li>
+        <p><%= c.body %> (<%=c.time_ago_in_words(c.created_at)%> by <a href="/users/<%=c.user.id%>"><%=c.user.username%>)</a><p>
     <% end %>
   </ul>
 <% end %>

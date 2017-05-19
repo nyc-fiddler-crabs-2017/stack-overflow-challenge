@@ -16,6 +16,8 @@ gem 'pry'
 
 gem 'shotgun', '~>0.9.1'
 
+gem 'actionview', '~> 4.2', '>= 4.2.6'
+
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
