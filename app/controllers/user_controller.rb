@@ -29,7 +29,7 @@ post '/users' do
 end
 
 get '/users/:id' do
-  require_user
+
   @user = User.find_by(id: params[:id])
   erb :'users/show'
 end
