@@ -1,12 +1,14 @@
-<form action='/questions/<%= question.id %>' method='post'>
-  <input type="hidden" name="_method" value="put">
-  <label>Question: <input type='text' name="question[title]"></label><br>
-  <label>Details: <input type='text' name="question[body]"></label><br>
-  <input type='submit' value='Edit Question'>
-</form>
-
-<form action='/questions/<%= question.id %>' method='post'>
-  <input type="hidden" name="_method" value="delete">
-  <input type='submit' value='Delete'>
+<% if require_owner(@user.id) %>
+  <form action='/questions/<%= question.id %>' method='post'>
+    <input type="hidden" name="_method" value="put">
+    <label>Question: <input type='text' name="question[title]"></label><br>
+    <label>Details: <input type='text' name="question[body]"></label><br>
+    <input type='submit' value='Edit Question'>
   </form>
-</div>
+
+  <form action='/questions/<%= question.id %>' method='post'>
+    <input type="hidden" name="_method" value="delete">
+    <input type='submit' value='Delete'>
+    </form>
+  </div>
+<% end %>
