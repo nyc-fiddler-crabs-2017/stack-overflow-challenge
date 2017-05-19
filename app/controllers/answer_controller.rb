@@ -3,11 +3,13 @@ get '/answers' do
 end
 
 get '/questions/:question_id/answers/new' do
+  require_user
   @question = Question.find(params[:question_id])
   erb :'/answers/new'
 end
 
 post '/questions/:question_id/answers' do
+  require_user
   @question = Question.find(params[:question_id])
   @answer = @question.answers.new(params[:answer])
   if @answer.save
@@ -20,12 +22,14 @@ end
 
 
 get '/questions/:question_id/answers/:answer_id/edit' do
+  require_user
   @question = Question.find_by(id: params[:question_id])
   @answer = Answer.find_by(id: params[:answer_id])
   erb :'/answers/edit'
 end
 
 put '/questions/:question_id/answers/:answer_id' do
+  require_user
   @question = Question.find_by(id: params[:question_id])
   @answer = Answer.find_by(id: params[:answer_id])
   if @answer.update(body: params[:body])
@@ -38,6 +42,7 @@ put '/questions/:question_id/answers/:answer_id' do
 end
 
 delete 'questions/:question_id/answers/:answer_id' do
+  require_user
   @question = Question.find_by(id: params[:question_id])
   @answer   = Answer.find_by(id: params[:answer_id])
   Answer.find_by(id: params[:answer_id]).destroy

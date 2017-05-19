@@ -1,11 +1,12 @@
 get '/questions/:question_id/comments' do
+  require_user
   @question = Question.find(params[:question_id])
   @comments = @question.comments
   erb :'comments/index'
 end
 
 get '/questions/:question_id/comments/new' do
-
+  require_user
   @question = Question.find(params[:question_id])
   if request.xhr?
     erb :'comments/_new', layout: false
@@ -15,6 +16,7 @@ get '/questions/:question_id/comments/new' do
 end
 
 post '/questions/:question_id/comments' do
+  require_user
   @question = Question.find(params[:question_id])
   @comment = @question.comments.new(params[:comment])
   if @comment.save
@@ -32,12 +34,14 @@ end
 # end
 
 get '/questions/:question_id/comments/:id/edit' do
+  require_user
   @question = Question.find(params[:question_id])
   @comment = @question.comments.find(params[:id])
   erb :'comments/edit'
 end
 
 put '/questions/:question_id/comments/:id' do
+  require_user
   @question = Question.find(params[:question_id])
   @comment = @question.comments.find(params[:id])
   if @comment.update_attributes(params[:comment])
@@ -48,6 +52,7 @@ put '/questions/:question_id/comments/:id' do
 end
 
 delete '/questions/:question_id/comments/:id' do
+  require_user
   @question = Question.find(params[:question_id])
   @comment = @question.comments.find(params[:id])
   @comment.destroy
