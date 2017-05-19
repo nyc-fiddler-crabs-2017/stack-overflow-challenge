@@ -3,9 +3,9 @@
 
 <%= erb :'_errors' %>
 
-<h3>submit new comment</h3>
+<h3>Submit New Answer</h3>
 <form action="/questions/<%=@question.id%>/answers" method="post">
-  <label>answer</label><input type="text" name="answer[body]">
-  <label>id</label><input type="text" name="answer[user_id]">
-  <input type="submit" value="answer">
+  <label>Answer: </label><input type="text" name="answer[body]">
+  <input type="hidden" name="answer[user_id]" value="<%=current_user.id%>">
+  <input type="submit" value="Submit">
 </form>

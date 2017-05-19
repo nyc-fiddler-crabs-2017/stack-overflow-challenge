@@ -1,16 +1,11 @@
-<ul>
-  <% if @errors %>
-   <% @errors.each do |error| %>
-      <li><%= error %></li>
-   <% end %>
-  <% end %>
-</ul>
-
-<h2><%=@question.title%></h2>
+<h1><%=@question.title%></h1>
 <h2><%=@question.body%></h2>
+
+<%= erb :'_errors' %>
 
 <form action="/questions/<%=@question.id%>/answers/<%=@answer.id%>" method="post">
   <input type="hidden" name="_method" value="put">
-  <input type="text" name="body" value="<%=@answer.body%>">
-  <input type="submit" value="Save Edit">
+  <label>answer: </label><input type="text" name="answer[body]" value="<%=@answer.body%>">
+  <input type="hidden" name="answer[user_id]" value="<%=current_user.id%>">
+  <input type="submit" value="Edit">
 </form>
