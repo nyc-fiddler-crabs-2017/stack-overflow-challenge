@@ -4,8 +4,5 @@
 </div>
 
 <% if logged_in? %>
-  <form action='/questions' method='post'>
-    <label>Input New Question: <input type='text' name="body"></label><br>
-    <input type='submit' value='SUBMIT'>
-  </form>
+  <%= erb :'/questions/_new' %>
 <% end %>
