@@ -12,8 +12,9 @@
 <%= erb :'_errors' %>
 
 
-
-<a href="/questions/<%=@question.id%>/edit">Edit</a>
+<div id="edit-section">
+  <a id="edit-button" href="/questions/<%=@question.id%>/edit">Edit</a>
+</div>
 
 <div id="comment-section">
   <a id="new-comment" href="/questions/<%=@question.id%>/comments/new">Comment</a>
