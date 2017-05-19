@@ -6,9 +6,11 @@
   <p>Asked by <%= @question.user.username %> <%=@question.time_ago_in_words(@question.created_at)%></p>
 </div>
 
-<div id="edit-section">
-  <a id="edit-question" href="/questions/<%=@question.id%>/edit">Edit Question</a>
-</div>
+<% if require_owner(@question.user.id) %>
+  <div id="edit-section">
+    <a id="edit-question" href="/questions/<%=@question.id%>/edit">Edit Question</a>
+  </div>
+<% end %>
 
 <p>Created by: <%= @question.user.username %></p>
 
