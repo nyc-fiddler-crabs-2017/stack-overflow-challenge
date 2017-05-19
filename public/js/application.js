@@ -37,9 +37,25 @@ $(document).ready(function() {
       method: 'get',
       url: $url,
     }).done(function(res) {
-      console.log(res);
       $($link).hide();
       $($link).closest(".new-answer-section").append(res);
+    })
+  })
+
+  $(".new-answer-section").on("submit", "#new-answer-form", function() {
+    event.preventDefault();
+    var $url = $(this).attr("action");
+    var $method = $(this).attr("method");
+    var $data = $(this).serialize();
+
+    $.ajax({
+      method: $method,
+      url: $url,
+      data: $data,
+    }).done(function(res){
+      $("#new-answer-form").remove();
+      $(".ul-answers").append(res);
+      $("#new-answer-link").show();
     })
   })
 });
