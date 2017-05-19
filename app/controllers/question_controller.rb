@@ -28,7 +28,7 @@ get '/questions/:id/edit' do
 
   @question = Question.find(params[:id])
   if request.xhr?
-    erb :'questions/_edit_delete.erb', layout: false
+    erb :'questions/_edit_delete', layout: false
   else
     erb :'questions/edit'
   end
