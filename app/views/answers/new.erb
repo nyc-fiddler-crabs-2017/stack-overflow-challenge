@@ -3,7 +3,7 @@
 
 <%= erb :'_errors' %>
 
-<h3>New Comment</h3>
+<h3>submit new comment</h3>
 <form action="/questions/<%=@question.id%>/answers" method="post">
   <label>answer</label><input type="text" name="answer[body]">
   <label>id</label><input type="text" name="answer[user_id]">
