@@ -5,16 +5,22 @@ get '/questions/:question_id/comments' do
 end
 
 get '/questions/:question_id/comments/new' do
+
   @question = Question.find(params[:question_id])
-  erb :'comments/new'
+  if request.xhr?
+    erb :'comments/_new', layout: false
+  else
+    erb :'comments/new'
+  end
 end
 
 post '/questions/:question_id/comments' do
   @question = Question.find(params[:question_id])
   @comment = @question.comments.new(params[:comment])
   if @comment.save
-    redirect "/questions/#{@question.id}/comments"
+    redirect "/questions/#{@question.id}"
   else
+    @errors = @comment.errors.full_messages
     erb :'comments/new'
   end
 end
