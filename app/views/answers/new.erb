@@ -4,8 +4,5 @@
 <%= erb :'_errors' %>
 
 <h3>Submit New Answer</h3>
-<form action="/questions/<%=@question.id%>/answers" method="post">
-  <label>Answer: </label><input type="text" name="answer[body]">
-  <input type="hidden" name="answer[user_id]" value="<%=current_user.id%>">
-  <input type="submit" value="Submit">
-</form>
+
+<%= erb :'/answers/_new' %>
