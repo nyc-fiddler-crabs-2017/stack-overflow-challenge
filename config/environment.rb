@@ -22,6 +22,8 @@ require 'erb'
 require 'pry'
 require 'bcrypt'
 
+require 'action_view'
+require 'action_view/helpers'
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
