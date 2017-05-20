@@ -28,6 +28,20 @@ $(document).ready(function() {
     })
   })
 
+  $(".new-answer-section").on("click", "#new-answer-link", function() {
+    event.preventDefault();
+    var $link = $(this);
+    var $url = $(this).attr("href");
+
+    $.ajax({
+      method: 'get',
+      url: $url,
+    }).done(function(res) {
+      $($link).hide();
+      $($link).closest(".new-answer-section").append(res);
+    })
+  })
+
   $("#show_question_form").on("click", function(event){
     event.preventDefault();
     var $link = $(this).attr('href')
@@ -59,7 +73,20 @@ $(document).ready(function() {
     })
   })
 
+  $(".new-answer-section").on("submit", "#new-answer-form", function() {
+    event.preventDefault();
+    var $url = $(this).attr("action");
+    var $method = $(this).attr("method");
+    var $data = $(this).serialize();
 
-
-
+    $.ajax({
+      method: $method,
+      url: $url,
+      data: $data,
+    }).done(function(res){
+      $("#new-answer-form").remove();
+      $(".ul-answers").append(res);
+      $("#new-answer-link").show();
+    })
+  })
 });

@@ -5,7 +5,11 @@ end
 get '/questions/:question_id/answers/new' do
   require_user
   @question = Question.find(params[:question_id])
-  erb :'/answers/new'
+  if request.xhr?
+    erb :'/answers/_new', layout: false, locals: {question: @question}
+  else
+    erb :'/answers/new'
+  end
 end
 
 post '/questions/:question_id/answers' do
@@ -13,13 +17,16 @@ post '/questions/:question_id/answers' do
   @question = Question.find(params[:question_id])
   @answer = @question.answers.new(params[:answer])
   if @answer.save
-    redirect "/questions/#{@question.id}"
+    if request.xhr?
+      erb :'/answers/_show', layout: false, locals: {partial_a: @answer }
+    else
+      redirect "/questions/#{@question.id}"
+    end
   else
     @errors = @answer.errors.full_messages
     erb :'/answers/new'
   end
 end
-
 
 get '/questions/:question_id/answers/:answer_id/edit' do
   require_user

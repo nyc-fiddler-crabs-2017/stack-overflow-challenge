@@ -14,24 +14,23 @@
 <% end %>
 
 <%= erb :'_errors' %>
-<section>
-<h3>Answers</h3>
-<div>
-  <% if logged_in? %>
-    <a href="/questions/<%= @question.id %>/answers/new">Answer</a>
+
+<h2>Answers</h2>
+<div class="new-answer-section">
+  <a id="new-answer-link" href="/questions/<%= @question.id %>/answers/new">Answer</a>
+</div>
+<div class="answer-list">
+  <% if @question.answers.count > 0 %>
+    <ul class="ul-answers">
+      <% @question.answers.each do |a| %>
+        <%= erb :'/answers/_show', locals: {partial_a: a} %>
+      <% end %>
+    </ul>
   <% end %>
 </div>
 
-<% if @question.answers.count > 0 %>
-  <ul>
-    <% @question.answers.each do |a| %>
-      <p><%= a.body %> (Answered <%=a.time_ago_in_words(a.created_at)%> by <a href="/users/<%=a.user.id%>"><%=a.user.username%></a>.)</p>
-    <% end %>
-  </ul>
-<% end %>
-</section>
-<section>
-<h3>Comments</h3>
+<h2>Comments</h2>
+
 <div id="comment-section">
   <% if logged_in? %>
     <a id="new-comment" href="/questions/<%=@question.id%>/comments/new">Comment</a>
