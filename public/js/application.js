@@ -51,12 +51,12 @@ $(document).ready(function() {
       method: 'get',
       url: $link
     }).done(function(response){
-      $(".class5").append(response)
+      $("#bottom-home").append(response)
       $($newQuestionLink).hide()
     })
   })
 
-  $(".class5").on("submit", "#new_question_form", function(event){
+  $("#bottom-home").on("submit", "#new_question_form", function(event){
     event.preventDefault()
     var data = $(this).serialize()
     var $link = $(this).attr("action")
@@ -67,9 +67,9 @@ $(document).ready(function() {
       url: $link,
       data: data
     }).done(function(response){
-      $(".class5").append(response)
-      $($form).hi
-
+      $("#q-list").append(response)
+      $($form).hide()
+      $("#show_question_form").show()
     })
   })
 

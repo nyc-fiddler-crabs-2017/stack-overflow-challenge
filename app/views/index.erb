@@ -1,11 +1,11 @@
 <div class="class5">
   <h1>QUESTIONS</h1>
-  <%= erb :'/questions/index' %>
+  <div id="q-list"
+    <%= erb :'/questions/index' %>
+  </div>
   <% if logged_in? %>
-    <a id="show_question_form" href="/questions/new">New Question</a>
   <% end %>
-
 </div>
-
-
-
+<div class="class4" id="bottom-home">
+  <a id="show_question_form" href="/questions/new">New Question</a>
+</div>
