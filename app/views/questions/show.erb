@@ -17,7 +17,9 @@
 
 <h2>Answers</h2>
 <div class="new-answer-section">
-  <a id="new-answer-link" href="/questions/<%= @question.id %>/answers/new">Answer</a>
+  <% if logged_in? %>
+    <a id="new-answer-link" href="/questions/<%= @question.id %>/answers/new">Answer</a>
+  <% end %>
 </div>
 <div class="answer-list">
   <% if @question.answers.count > 0 %>
